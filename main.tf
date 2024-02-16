@@ -32,7 +32,7 @@ resource "aws_instance" "blog" {
 
 resource "aws_security_group" "blog" {
   name        = "blog"
-  description = "Allow https/https in. Allow everything out."
+  description = "Allow http/https in. Allow everything out."
   vpc_id      = data.aws_vpc.default.id
 }
 
@@ -41,17 +41,16 @@ resource "aws_security_group_rule" "blog_http_in" {
   from_port   = 80
   to_port     = 80
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = ["93.104.65.206/0]
 
   security_group_id = aws_security_group.blog.id
 }
-
 resource "aws_security_group_rule" "blog_https_in" {
   type        = "ingress"
   from_port   = 443
   to_port     = 443
   protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
+  cidr_blocks = ["93.104.65.206/0"]
 
   security_group_id = aws_security_group.blog.id
 }
