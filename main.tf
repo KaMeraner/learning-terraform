@@ -55,7 +55,7 @@ resource "aws_security_group_rule" "blog_https_in" {
   security_group_id = aws_security_group.blog.id
 }
 
-resource "aws_security_group_rule" "blog_all_in" {
+resource "aws_security_group_rule" "blog_all_out" {
   type        = "egress"
   from_port   = 0
   to_port     = 0
