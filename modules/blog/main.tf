@@ -45,7 +45,7 @@ module "blog_asg" {
   max_size = var.asg_max_size
 
   vpc_zone_identifier = module.blog_vpc.public_subnets
-  target_group_arns   = [module.blog_alb.target_groups.ex-instance.arn]
+  target_group_arns   = [module.blog_alb.arn]
   security_groups     = [module.blog_sg.security_group_id]
 
   image_id        = data.aws_ami.app_ami.id
@@ -63,18 +63,16 @@ module "blog_alb" {
   enable_deletion_protection = false
 
   target_groups = {
-    ex-instance = {
       name_prefix      = "${var.environment.name}-"
       protocol         = "HTTP"
       port             = 80
-    }
   }
   listeners = {
     ex-http = {
       port            = 80
       protocol        = "HTTP"
       forward = {
-        target_group_key = "ex-instance"
+        target_group_index = 0
       }
     }
   }
