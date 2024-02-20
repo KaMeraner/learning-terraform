@@ -37,6 +37,7 @@ module "blog_vpc" {
 module "blog_asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "7.3.1"
+  depends_on = [module.blog_alb]
 
   # Autoscaling group
   name     = "${var.environment.name}-blog"
