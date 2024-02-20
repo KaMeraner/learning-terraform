@@ -39,10 +39,6 @@ variable "asg_max_size" {
 
 variable "my_ip" {
     description = "My IPv4 adress"
-    type = {{
-        "string"
-    }}
-    default = {
-        "993.104.89.117/32"
-    }
+    type        = "string"
+    default     = "993.104.89.117/32"
 }
