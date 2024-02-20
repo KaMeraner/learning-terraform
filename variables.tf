@@ -29,11 +29,11 @@ variable "environment" {
 }
 
 variable "asg_min_size" {
-    description = "Minimum of number of instances in the blog_asg
+    description = "Minimum of number of instances in the blog_asg"
     default = 1
 }
 variable "asg_max_size" {
-    description = "Maximum of number of instances in the blog_asg
+    description = "Maximum of number of instances in the blog_asg"
     default = 2
 }
 
