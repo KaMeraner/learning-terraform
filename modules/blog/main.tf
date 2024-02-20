@@ -54,7 +54,6 @@ module "blog_asg" {
 
 module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
-  depends_on = [module.blog_asg]
 
   name                       = "${var.environment.name}-blog-alb"
   vpc_id                     = module.blog_vpc.vpc_id
@@ -67,6 +66,8 @@ module "blog_alb" {
       name_prefix      = "${var.environment.name}-"
       protocol         = "HTTP"
       port             = 80
+      #target_type      = "instance"
+      #target_id        = module.blog_asg.autoscaling_group_arn
     }
   }
   listeners = {
