@@ -63,16 +63,20 @@ module "blog_alb" {
   enable_deletion_protection = false
 
   target_groups = {
-      name_prefix      = "${var.environment.name}-"
-      protocol         = "HTTP"
-      port             = 80
+    ex-instance = {
+      name_prefix       = "${var.environment.name}-"
+      protocol          = "HTTP"
+      port              = 80
+      create_attachment = false
+    }
+      
   }
   listeners = {
     ex-http = {
       port            = 80
       protocol        = "HTTP"
       forward = {
-        target_group_index = 0
+        target_group_key = "ex-instance"
       }
     }
   }
