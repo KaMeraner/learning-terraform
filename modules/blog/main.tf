@@ -44,7 +44,7 @@ module "blog_asg" {
   max_size = var.asg_max_size
 
   vpc_zone_identifier = module.blog_vpc.public_subnets
-  target_group_arns   = [module.blog_alb.arn]
+  target_group_arns   = [module.blog_alb.target_groups.ex-instance.arn]
   security_groups     = [module.blog_sg.security_group_id]
 
   image_id        = data.aws_ami.app_ami.id
@@ -66,8 +66,6 @@ module "blog_alb" {
       name_prefix      = "${var.environment.name}-"
       protocol         = "HTTP"
       port             = 80
-      #target_type      = "instance"
-      target_id        = module.blog_asg.autoscaling_group_arn
     }
   }
   listeners = {
